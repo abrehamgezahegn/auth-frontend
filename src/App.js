@@ -1,24 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import AuthContextProvider from "./context/AuthProvider";
+import MainRouter from "./routers";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContextProvider>
+      <MainRouter />
+      <div className="h-8 bg-green-600 w-screen fixed bottom-0" />
+    </AuthContextProvider>
   );
 }
 

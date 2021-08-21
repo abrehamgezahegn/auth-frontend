@@ -1,0 +1,86 @@
+import { useRef, useState } from "react";
+import { Form, Button, Spinner } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "../../context/AuthProvider";
+
+const Signup = () => {
+  const [state, setState] = useState("");
+  const history = useHistory();
+  const nameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const auth = useAuth();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setState("loading");
+
+    try {
+      const res = await axios({
+        method: "post",
+        url: "http://127.0.0.1:4000/signup",
+        data: {
+          name: nameRef.current.value,
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        },
+      });
+
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("refreshToken", res.data.refreshToken);
+      auth.setUser(res.data.user);
+      history.push("/todo");
+    } catch (error) {}
+  };
+
+  return (
+    <div className="flex justify-center align-items-center h-screen">
+      <div className="p-12  rounded">
+        <Form>
+          <Form.Group className="mb-8" controlId="formBasicEmail">
+            <Form.Label id="name-label">Name</Form.Label>
+            <Form.Control ref={nameRef} type="text" placeholder="Enter name" />
+          </Form.Group>
+
+          <Form.Group className="mb-8" controlId="formBasicEmail">
+            <Form.Label id="email-label">Email address</Form.Label>
+            <Form.Control
+              ref={emailRef}
+              type="email"
+              placeholder="Enter email"
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              ref={passwordRef}
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Group>
+
+          <Button
+            style={{ minWidth: 120 }}
+            variant="primary"
+            type="submit"
+            onClick={state !== "loading" ? handleSubmit : () => {}}
+          >
+            {state === "loading" ? (
+              <Spinner
+                data-testid="loading-spinner"
+                size="sm"
+                animation="border"
+              />
+            ) : (
+              "Submit"
+            )}
+          </Button>
+        </Form>
+      </div>
+    </div>
+  );
+};
+
+export default Signup;
