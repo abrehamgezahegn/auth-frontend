@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/AuthProvider";
 
-const Signup = () => {
+const Login = () => {
   const [state, setState] = useState("");
   const history = useHistory();
   const nameRef = useRef();
@@ -39,11 +39,6 @@ const Signup = () => {
       <div className="p-12  rounded">
         <Form>
           <Form.Group className="mb-8" controlId="formBasicEmail">
-            <Form.Label id="name-label">Name</Form.Label>
-            <Form.Control ref={nameRef} type="text" placeholder="Enter name" />
-          </Form.Group>
-
-          <Form.Group className="mb-8" controlId="formBasicEmail">
             <Form.Label id="email-label">Email address</Form.Label>
             <Form.Control
               ref={emailRef}
@@ -61,14 +56,15 @@ const Signup = () => {
             />
           </Form.Group>
           <p className="text-lg">
-            Have account?{" "}
+            Don't have an account?{" "}
             <span
               onClick={() => {
-                history.push("/login");
+                console.log("pushingg");
+                history.push("/signup");
               }}
               className="text-blue-500 hover:text-blue-700 cursor-pointer underline hover:no-underline transition-all	duration-4000"
             >
-              Login
+              Sign up
             </span>{" "}
           </p>
 
@@ -85,7 +81,7 @@ const Signup = () => {
                 animation="border"
               />
             ) : (
-              "Signup"
+              "Login"
             )}
           </Button>
         </Form>
@@ -94,4 +90,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

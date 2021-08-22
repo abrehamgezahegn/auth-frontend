@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createContext, useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 const AuthProvider = createContext();
 
