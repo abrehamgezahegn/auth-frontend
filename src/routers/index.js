@@ -12,11 +12,11 @@ import Todo from "../screens/Todo";
 const MainRouter = () => {
   const auth = useAuth();
 
-  if (auth.user.email) {
+  if (auth.user) {
     return (
       <Router>
         <Switch>
-          <Route path="/" component={Todo} />
+          <Route exact path="/" component={Todo} />
           <Redirect to="/" />
         </Switch>
       </Router>
@@ -26,8 +26,8 @@ const MainRouter = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/signup" component={Signup} />
-        <Route path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/login" component={Login} />
         <Redirect to="/signup" />
       </Switch>
     </Router>

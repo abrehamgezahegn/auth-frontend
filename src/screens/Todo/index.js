@@ -16,37 +16,55 @@ const Todo = () => {
   };
 
   return (
-    <div className="flex justify-center  mt-24">
-      <div>
-        <h1 className="mb-4 text-center">
-          Hey 👋 <span className="text text-green-700">{auth.user.name}</span>{" "}
-        </h1>
-        <h1 className="mb-4 text-center">Your todo items are</h1>
-        <div className="flex">
-          <Form.Control
-            type="text"
-            placeholder="Add todo..."
-            className="mr-8"
-            ref={inputRef}
-            data-testid="input"
-          />
-          <Button onClick={addTodo} className="w-auto whitespace-nowrap">
-            Add Item
-          </Button>
-        </div>
+    <div>
+      <h5
+        onClick={() => {
+          auth.signOut();
+        }}
+        className="text-blue-500 text-right p-8 pl-0 pb-0 hover:text-black-700 cursor-pointer underline hover:no-underline "
+      >
+        Logout
+      </h5>
+      <div className="flex justify-center  mt-24 mb-44">
         <div>
-          {todos.map((item) => (
-            <TodoItem
-              onDone={() => {
-                setDone((prev) => [...prev, item]);
+          <h1 className="mb-4 text-center">
+            Hey 👋 <span className="text text-green-700">{auth.user.name}</span>{" "}
+          </h1>
+          <h1 className="mb-4 text-center">Your todo items are</h1>
+          <div>
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                addTodo();
               }}
-              title={item.title}
-              key={item.id}
-              isDone={() => {
-                return doneTodos.some((todo) => todo.id === item.id);
-              }}
-            />
-          ))}
+              className="flex"
+            >
+              <Form.Control
+                type="text"
+                placeholder="Add todo..."
+                className="mr-8"
+                ref={inputRef}
+                data-testid="input"
+              />
+              <Button type="submit" className="w-auto whitespace-nowrap">
+                Add Item
+              </Button>
+            </Form>
+          </div>
+          <div>
+            {todos.map((item) => (
+              <TodoItem
+                onDone={() => {
+                  setDone((prev) => [...prev, item]);
+                }}
+                title={item.title}
+                key={item.id}
+                isDone={() => {
+                  return doneTodos.some((todo) => todo.id === item.id);
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
