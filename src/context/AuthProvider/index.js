@@ -25,6 +25,8 @@ const AuthContextProvider = ({ children }) => {
       });
     } catch (error) {
       console.log("refresh token", error);
+
+      // this means the RT has been stolen
       signOut();
     }
   };
@@ -33,9 +35,14 @@ const AuthContextProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     try {
       await axios({
-        method: "get",
+        method: "post",
         url: "http://127.0.0.1:4000/logout",
-        headers: { authorization: token },
+        // headers: { authorization: token },
+        data: {
+          id: user.id,
+          email: user.email,
+          token: token,
+        },
       });
       clearLocalStorage();
     } catch (error) {
