@@ -28,7 +28,7 @@ const MainRouter = () => {
       <Switch>
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />
-        <Redirect to="/signup" />
+        <Redirect to="/login" />
       </Switch>
     </Router>
   );

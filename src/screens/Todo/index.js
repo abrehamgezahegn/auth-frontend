@@ -8,7 +8,6 @@ const Todo = () => {
   const [doneTodos, setDone] = useState([]);
   const inputRef = useRef();
   const auth = useAuth();
-  console.log("auth ", auth);
 
   const addTodo = () => {
     const item = inputRef.current.value;
@@ -29,11 +28,9 @@ const Todo = () => {
       <div className="flex justify-center  mt-24 mb-44">
         <div>
           <h1 className="mb-4 text-center">
-            {/* Hey 👋 <span className="text text-green-700">{auth. .name}</span>{" "} */}
+            Hey 👋 <span className="text text-green-700">{auth.user.name}</span>{" "}
           </h1>
-          <h1 data-testid="todo-title" className="mb-4 text-center">
-            Your todo items are
-          </h1>
+
           <div>
             <Form
               onSubmit={(e) => {

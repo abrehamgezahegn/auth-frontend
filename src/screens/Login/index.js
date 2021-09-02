@@ -11,17 +11,18 @@ const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const auth = useAuth();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setState("loading");
+    setErrorMessage("");
 
     try {
       const res = await axios({
         method: "post",
-        url: "http://127.0.0.1:4000/signup",
+        url: "http://127.0.0.1:4000/login",
         data: {
-          name: nameRef.current.value,
           email: emailRef.current.value,
           password: passwordRef.current.value,
         },
@@ -31,29 +32,28 @@ const Login = () => {
       localStorage.setItem("refreshToken", res.data.refreshToken);
       auth.setUser(res.data.user);
       history.push("/todo");
-    } catch (error) {}
+    } catch (error) {
+      console.log("error", error);
+      setErrorMessage("Wrong email or password");
+      setState("");
+    }
   };
 
   return (
     <div className="flex justify-center align-items-center h-screen">
       <div className="p-12  rounded">
+        {errorMessage && (
+          <p className="text-red-400 text-center">{errorMessage}</p>
+        )}
         <Form>
           <Form.Group className="mb-8" controlId="formBasicEmail">
             <Form.Label id="email-label">Email address</Form.Label>
-            <Form.Control
-              ref={emailRef}
-              type="email"
-              // placeholder="Enter email"
-            />
+            <Form.Control ref={emailRef} type="email" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control
-              ref={passwordRef}
-              type="password"
-              // placeholder="Password"
-            />
+            <Form.Control ref={passwordRef} type="password" />
           </Form.Group>
           <p className="text-lg">
             Don't have an account?{" "}
