@@ -2,9 +2,10 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 import Todo from ".";
 
 test("Todo renders", () => {
-  const { getByText, debug } = render(<Todo />);
+  const { getByText, getByTestId, debug } = render(<Todo />);
   debug();
-  expect(getByText("Todo Items")).not.toBe(null);
+  expect(getByTestId("todo-title")).not.toBe(null);
+  // expect(getByText("Your todo items are")).not.toBe(null);
 });
 
 test("Can add todo", () => {

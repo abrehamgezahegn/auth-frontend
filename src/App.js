@@ -5,7 +5,7 @@ function App() {
   return (
     <AuthContextProvider>
       <MainRouter />
-      <div className="h-8 bg-green-600 w-screen fixed bottom-0" />
+      <div className="h-8 bg-blue-500 w-screen fixed bottom-0" />
     </AuthContextProvider>
   );
 }

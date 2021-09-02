@@ -43,7 +43,7 @@ const Login = () => {
             <Form.Control
               ref={emailRef}
               type="email"
-              placeholder="Enter email"
+              // placeholder="Enter email"
             />
           </Form.Group>
 
@@ -52,7 +52,7 @@ const Login = () => {
             <Form.Control
               ref={passwordRef}
               type="password"
-              placeholder="Password"
+              // placeholder="Password"
             />
           </Form.Group>
           <p className="text-lg">

@@ -74,6 +74,7 @@ const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     getCurrentUser();
+    // eslint-disable-next-line
   }, []);
 
   if (state === "loading") {

@@ -40,7 +40,7 @@ const Signup = () => {
         <Form>
           <Form.Group className="mb-8" controlId="formBasicEmail">
             <Form.Label id="name-label">Name</Form.Label>
-            <Form.Control ref={nameRef} type="text" placeholder="Enter name" />
+            <Form.Control ref={nameRef} type="text" />
           </Form.Group>
 
           <Form.Group className="mb-8" controlId="formBasicEmail">
@@ -48,7 +48,7 @@ const Signup = () => {
             <Form.Control
               ref={emailRef}
               type="email"
-              placeholder="Enter email"
+              // placeholder="Enter email"
             />
           </Form.Group>
 
@@ -57,7 +57,7 @@ const Signup = () => {
             <Form.Control
               ref={passwordRef}
               type="password"
-              placeholder="Password"
+              // placeholder="Password"
             />
           </Form.Group>
           <p className="text-lg">

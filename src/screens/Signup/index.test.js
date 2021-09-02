@@ -25,11 +25,15 @@ test("Shows loading state", () => {
       <SignUp />
     </Router>
   );
+  const nameInput = getByLabelText("Name");
   const emailInput = getByLabelText("Email address");
   const passwordInput = getByLabelText("Password");
-  const button = getByText("Submit");
+  const button = getByText("Signup");
 
-  fireEvent.change(emailInput, { target: { value: "abreham@gmail.com" } });
+  fireEvent.change(nameInput, { target: { value: "Abrehammm" } });
+  fireEvent.change(emailInput, {
+    target: { value: "abreha17167364646m@gmail.com" },
+  });
   fireEvent.change(passwordInput, { target: { value: "password" } });
   fireEvent.click(button);
 
